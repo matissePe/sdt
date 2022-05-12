@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+
+    "name": "SDT",
+    "version": "0.1.0",
+    "description": "SDT",
+
+    "content_scripts": [{
+        "js": ["index.js"],
+        "matches": ["https://www.c4se.fr/*"]
+    }],
+    "web_accessible_resources": [
+        "is.json"
+    ]
+}

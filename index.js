@@ -28,10 +28,10 @@ fetch("https://raw.githubusercontent.com/matissePe/sdt/moodle-ubs/is.json")
     .then(f => file = f);
 
 document.addEventListener('dblclick', () => {
-    let question = document.getElementsByClassName("qtext")
+    let questions = document.getElementsByClassName("qtext");
 
-    if (question.length > 0) {
-        question = cleanQuestion(question[0].innerHTML);
+    for (let qIndex in questions) {
+        const question = cleanQuestion(questions[qIndex].innerHTML);
         responses = file[question];
 
         if (responses) {
@@ -44,14 +44,16 @@ document.addEventListener('dblclick', () => {
 
             responses.forEach(response => {
                 answerProp = selector
-                    ? document.getElementsByClassName("answer")[0].children[0].children
-                    : document.getElementsByClassName("answer")[0].children;
+                    ? document.getElementsByClassName("answer")[qIndex].children[0].children
+                    : document.getElementsByClassName("answer")[qIndex].children;
 
                 for (let i = 0; i < answerProp.length; i++) {
 
                     // if selector menu
                     if (selector) {
                         let prop = extractSelectorProp(answerProp[i]);
+
+                        console.log(prop, response);
 
                         if (prop == response) {
                             responseSelector = file[question][response];

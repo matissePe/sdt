@@ -3,7 +3,7 @@ function clean(s) {
 }
 
 function cleanQuestion(q) {
-    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").replace(/&AMP;/g, "");
+    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").reaplce(/\(PLUIEURBONNERÉPONE\)/g, "").replace(/&AMP;/g, "").replace(/-/g, "")
 }
 
 function extractProp(prop) {
@@ -11,7 +11,6 @@ function extractProp(prop) {
         return clean(prop.children[2].children[1].children[0].innerHTML);
     }
     else if (prop.children[2] && prop.children[2].children[1] != undefined) {
-        console.log(prop.children[2].children[1].innerHTML);
         return clean(prop.children[2].children[1].innerHTML);
     }
     else if (prop.children[1].children.length != 0 && prop.children[1].children[1].children[0] != undefined) {
@@ -40,6 +39,7 @@ document.addEventListener('dblclick', () => {
     for (let qIndex in questions) {
         const question = cleanQuestion(questions[qIndex].innerHTML);
         responses = file[question];
+        console.log(question);
 
         if (responses) {
             selector = false;
@@ -59,9 +59,6 @@ document.addEventListener('dblclick', () => {
                     // if selector menu
                     if (selector) {
                         let prop = extractSelectorProp(answerProp[i]);
-
-                        console.log(prop, response);
-
                         if (prop == response) {
                             responseSelector = file[question][response];
                             selectorPropositions = answerProp[i].children[1].children[1].children;
@@ -77,6 +74,7 @@ document.addEventListener('dblclick', () => {
                     // if radio button or checkbox
                     else {
                         let prop = extractProp(answerProp[i]);
+                        console.log(prop);
 
                         if (prop == response) {
                             answerProp[i].children[1].checked = true;

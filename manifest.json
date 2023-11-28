@@ -1,15 +1,24 @@
 {
-  "manifest_version": 2,
-
+  "manifest_version": 3,
   "name": "SDT",
   "version": "0.1.0",
   "description": "SDT",
-
   "content_scripts": [
     {
       "js": ["index.js"],
       "matches": ["https://moodle.univ-ubs.fr/mod/quiz/attempt.php*"]
     }
   ],
-  "web_accessible_resources": ["is.json"]
+  "permissions": [
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://moodle.univ-ubs.fr/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["is.json"],
+      "matches": ["https://moodle.univ-ubs.fr/*"]
+    }
+  ]
 }

@@ -3,15 +3,22 @@ function clean(s) {
 }
 
 function cleanQuestion(q) {
-    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "");
+    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").replace(/&AMP;/g, "");
 }
 
 function extractProp(prop) {
-    if (prop.children[2]) {
+    if (prop.children[2] && prop.children[2].children[1].children[0] != undefined) {
         return clean(prop.children[2].children[1].children[0].innerHTML);
     }
-    else if (prop.children[1].children.length != 0) {
+    else if (prop.children[2] && prop.children[2].children[1] != undefined) {
+        console.log(prop.children[2].children[1].innerHTML);
+        return clean(prop.children[2].children[1].innerHTML);
+    }
+    else if (prop.children[1].children.length != 0 && prop.children[1].children[1].children[0] != undefined) {
         return clean(prop.children[1].children[1].children[0].innerHTML);
+    }
+    else if (prop.children[1].children[1] != undefined && prop.children[1].children[1].innerHTML) {
+        return clean(prop.children[1].children[1].innerHTML);
     }
     else {
         return clean(prop.children[1].innerHTML);

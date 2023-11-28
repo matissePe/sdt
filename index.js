@@ -3,7 +3,7 @@ function clean(s) {
 }
 
 function cleanQuestion(q) {
-    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").reaplce(/\(PLUIEURBONNERÉPONE\)/g, "").replace(/&AMP;/g, "").replace(/-/g, "")
+    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").replace(/\(PLUIEURBONNERÉPONE\)/g, "").replace(/&AMP;/g, "").replace(/-/g, "")
 }
 
 function extractProp(prop) {

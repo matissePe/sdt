@@ -1,9 +1,9 @@
 function clean(s) {
-    return s.replace(/(<([^>]+)>)/gi, "").replace(/ /g, "").replace(/\"/g, "").replace(/&nbsp;/g, "").replace(/\n/g, "").replace(/,/g, "").trim().toUpperCase().replace(/S/g, "");
+    return s.replace(/(<([^>]+)>)/gi, "").replace(/ /g, "").replace(/\"/g, "").replace(/&nbsp;/g, "").replace(/\n/g, "").replace(/,/g, "").trim().toUpperCase().replace(/S/g, "").replace(/:/g, "")
 }
 
 function cleanQuestion(q) {
-    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").replace(/\(PLUIEURBONNERÉPONE\)/g, "").replace(/&AMP;/g, "").replace(/-/g, "")
+    return clean(q).replace(/[0-9]RÉPONECORRECTE$/g, "").replace(/[0-9]RÉPONE$/g, "").replace(/PLUIEURRÉPONE$/g, "").replace(/\(PLUIEURBONNERÉPONE\)/g, "").replace(/&AMP;/g, "").replace(/-/g, "").replace(/:/g, "")
 }
 
 function extractProp(prop) {
